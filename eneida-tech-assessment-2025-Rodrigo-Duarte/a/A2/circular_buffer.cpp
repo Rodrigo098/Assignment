@@ -64,7 +64,7 @@ class CircularBuffer {
             return ((head+1)%SIZE_BUFFER)==tail;
         }
 
-        unsigned char * copy_buffer(){ 
+        unsigned char* copy_buffer(){ 
             if(is_empty()) {
                 return nullptr; 
             }
