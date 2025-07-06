@@ -1,0 +1,15 @@
+Relativamente ao mecanismo de OTA, para começar deve-se garantir 
+que os firmwares são assinados com uma key criptografada por motivos de segurança.
+Os dispositivos desta maneira só são atualizados com firmwares oficiais, deve estar também
+incluido no firmware metadata relativamente à versão da firmware.
+
+Os dispositivos devem escrever o firmware numa partição livre para caso
+os dados da nova firmware estejam corrompidos, o dispositivo continua com a firmware 
+anterior. Se a firmware estiver totalmente functional, esta nova partição passa 
+a ser a ativa e a partição onde se encontrava a firmware anterior passa a ficar livre.
+Estou a assumir que os dispositivos podem ter duas partições com o mesmo tamanho para 
+a firmware.
+
+Para a transmissão dos dados eu iria optar por um canal seguro TLS e transmitira os 
+a firmware em chunks de dados, se possível iria guardar logs durante a tranferência
+no dispositivo.

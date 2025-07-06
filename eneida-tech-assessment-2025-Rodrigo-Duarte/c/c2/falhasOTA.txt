@@ -1,0 +1,13 @@
+Algumas falhas mais comuns durante o OTA podem ser falhas de energia ou de conexão
+ o que pode corromper os dados de firmware novos e a resolução é bastante simples,
+ o firmware novo é colocado numa nova partição para caso ocorra uma falha o dispositivo
+ mantêm a versão anterior. 
+ Outro problema que pode acontecer é a firmware nova ser não
+ oficial e a solução passa por uma verificação da chave com que a firmware foi assinada. 
+ Um outro problema pode ser atualizar o firmware com versões anterior o que também pode
+ ser resolvido com uma simples solução de apenas aceitar firmwares com versões mais recentes
+ que aquela que corre no dispositivo.
+ Um problema comum em dispositivos menores é a falta de memória para o firmware
+ e uma possivel solução seria antes enviar a firmware, enviar os detalhes da mesma
+ com o tamanho e versao do firmware por exemplo para que o dispositivo possa realizar uma
+ verificação se tem espaço suficiente.

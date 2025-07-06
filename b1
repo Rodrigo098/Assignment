@@ -1,0 +1,21 @@
+Para criar um driver para este Peripheral iria ter de primeiramente ter acesso ao 
+datasheet do dispositivo para saber qual modo utilizar em termos de clock polarity
+se ter o idle em high ou em low e se os dados são enviados na transição para low 
+ou na transição para high.
+A mesma coisa se pode dizer para o baud rate no qual escolheria o maximo valor 
+suportado por este peripheral.
+Relativame ao chip select o standard normalmente é colocar o CS a low para enviar mensagens
+portanto provavelmente optaria por essa solução.
+
+Relativamente à arquitetura de blocking ou non blocking iria depender de qual dispositivo
+se trata, para o de temperatura provavelmente usaria o blocking mode devido à simplicidade
+para se implementar e também porque as leituras não seriam tão frequentes. O giroscópio o DMA seria
+mais indicado simplesmente pela frequencia das mensagens.
+
+Relativamente aos abstraction layers, iria criar layers para poder abstrair operações diretamente no hardware
+como criar funções para controlar o CS, initialização do peripheral entre outros.
+Acredito que também se deva criar uma API para realizar as operações mais comuns que usariam o layer anterior
+por exemplo para realizar estas operações. O objetivo aqui é criar código que possa ser mantido e reutilizado
+futuramente.
+
+Relativamente aos multi-bytes vai depender de quantos bytes
