@@ -1,0 +1,40 @@
+Uma possivel estatégia para este dispositivo
+seria usar MQTT como protocolo de comunicação
+pois é simples de se implementar, permite ter
+vários dispositivos e é leve nos recursos.
+
+Os dados preferencialmente seriam enviados em 
+JSON e poderiam ser publicados no MQTT em topicos
+diferentes.
+
+Relativamente ao tamanho de cada mensagem
+se tivermos para os campos dos data report:
+Eletrical:
+	id(uint8): 1 byte // Vou assumir que nao haverá mais que 255 dispositivos
+	timestamp(int): 4 bytes
+	voltage(float): 4 bytes
+	current(float): 4 bytes
+	power(float): 4 bytes
+	
+	No total são 64 caracteres excluindo os numeros, assumindo 1 byte por caracter e dá 64 bytes
+	
+Health:
+	id(uint8): 1 byte
+	timestamp(int): 4 bytes
+	temp(int8): 1 byte // Estou a usar temperatura como exemplo e aqui novamente estou a assumir que as temperaturas estão entre -128 e 128
+	battery(uint8): 1 byte
+	
+	No total são 66 caracteres excluindo os numeros, assumindo 1 byte por caracter e dá 66 bytes
+	
+
+Os headers do MQTT ocupariam 5 bytes: 1 Control Header, 1 Length e 3 Variable Header
+Nos publish o variable header é utilizado
+Assim cada mensagem de eletrical iria ocupar em torno de 90 bytes e cada health seria 77 bytes.
+
+6 mensagens de Header por hora = 540 bytes
+Por dia o total de bandwith seria= (540*24) +(66*24)=3744+264=14544 bytes o que seria perto de 14kb
+Por mes seria 14544*30=436320  o que seria em torno de 0.4 MB por dispositivo
+
+Assumindo que os calculos estão corretos o bandwith utilizado não é preocupante no entanto
+para se reduzir o uso de dados pode-se optar por primeiro reduzir o nome dos campos no json
+ou reduzir a frequência das mensagens.
