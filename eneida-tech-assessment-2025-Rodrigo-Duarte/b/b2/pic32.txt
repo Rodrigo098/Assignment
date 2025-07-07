@@ -1,0 +1,14 @@
+Primeiro de tudo escolheria um dos canais DMA do PIC32MZ para
+ser usado, eu usei esta datasheet como referencia:https://www.alldatasheet.com/datasheet-pdf/view/1450841/MICROCHIP/PIC32MZ1025W104.html
+
+Portanto tenho 8 canais disponiveis, posso escolher qualquer um para tal.
+Depois ara configurar o DMA tenho de dar reset aos register deste canal
+e definir o source de onde vem a informação, o que no caso é ADC1BUF0 que é um buffer
+com os resultados das leituras do ADC e definir também um um destino para o DMA
+que no caso pode ser um buffer na memória RAM. Idealmente devia também definir 
+o trigger do DMA que deveria ser o interrupt do ADC1.
+
+A maior vantagem de usar o DMA é que não é necessário usar o CPU para estas
+operações o que torna ideal para mover mais dados, um exemplo do mundo real seria
+usar um servo em que para fazer as leitura da posição do motor poderiamos usar o
+DMA para evitar usar a CPU do microcontrolador
