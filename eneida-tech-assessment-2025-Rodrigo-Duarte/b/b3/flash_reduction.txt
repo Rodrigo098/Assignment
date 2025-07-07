@@ -1,0 +1,14 @@
+Para reduzir o Wear da flash uma opção seria
+colocar um número de logs em memória RAM 
+e depois fazer a escrita na flash dos multiplos logs
+numa unica operação write evitando assim multiplos writes.
+Outra opção seria usar o wear levering para garantir que todos
+os blocos de memória são usados o mesmo número de vezes.
+uma outra opção seria usar journaling para garantir que temos
+writes sequenciais.
+
+Alguns dos problemas de usar o eMMC com embedded Linux são
+o numero limitado de writes, portanto logs frequentes não são recomendados.
+A performance de um eMMC também não é das melhores portanto pode ser lento
+em operações com mais dados.
+Outro problema é que limita o diagnóstico do estado da memória.
